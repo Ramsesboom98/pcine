@@ -6,56 +6,30 @@ import ec.edu.epn.git.dto.PeliculaDTO;
 
 public class ControlPeliculas implements PeliculaDAO {
 	ArrayList<PeliculaDTO> peliculas;
-	
 	public ControlPeliculas() {
 		this.peliculas = new ArrayList<PeliculaDTO>();
 	}
-	
-
 	public boolean addPelicula(PeliculaDTO pelicula) {
 		return this.peliculas.add(pelicula);
 	}
-
 	public boolean deletePelicula(int idPelicula) {
 		ArrayList<PeliculaDTO> data = findAllPeliculas();
-		int index = 0;
-		for(PeliculaDTO pelicula: data) {
-			index = data.indexOf(pelicula);
-			if(pelicula.getIdPelicula()==idPelicula) {
-				data.remove(index);
-				return true;
-			}
-		}
-		return false;
-		
+		return data.remove(findPeliculaById(idPelicula));
 	}
-
 	public ArrayList<PeliculaDTO> findAllPeliculas() {
 		return this.peliculas;
 	}
-
-
 	public boolean updatePelicula(int id, PeliculaDTO peliculaup) {
 		ArrayList<PeliculaDTO> data = findAllPeliculas();
-		int index = 0;
-		for(PeliculaDTO pelicula: data) {
-			index = data.indexOf(pelicula);
-			if(pelicula.getIdPelicula()==id) {
-				data.set(index, peliculaup);
-				return true;
-			}
-		}
-		
+		if(data.set(id, peliculaup)!=null) {
+			return true;
+		}		
 		return false;
 	}
-
-
 	public PeliculaDTO findPeliculaById(int id) {
 
 		ArrayList<PeliculaDTO> data = findAllPeliculas();
-		//int index = 0;
 		for(PeliculaDTO pelicula: data) {
-			//index = data.indexOf(pelicula);
 			if(pelicula.getIdPelicula()==id) {
 				return pelicula;
 			}
