@@ -3,12 +3,14 @@ package ec.edu.epn.git;
 public class Pelicula {
 	
 	private String nombre;
-	private String genero;	
+	private String genero;
+	private int año;
 	
-	public Pelicula(String nombre, String genero) {
+	public Pelicula(String nombre, String genero, int año) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
+		this.año = año;
 	}
 	
 	public String getNombre() {
