@@ -1,16 +1,19 @@
-package ec.edu.epn.git;
+package ec.edu.epn.git.dto;
 
-public class Pelicula {
+public class PeliculaDTO {
 	
 	private String nombre;
 	private String genero;
 	private int año;
 	
-	public Pelicula(String nombre, String genero, int año) {
+	public PeliculaDTO(String nombre, String genero, int año) {
 		super();
 		this.nombre = nombre;
 		this.genero = genero;
 		this.año = año;
+	}
+	public PeliculaDTO() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	public String getNombre() {
