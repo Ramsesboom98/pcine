@@ -55,7 +55,7 @@ public class PeliculaDTO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.nombre+" - "+this.genero+" - Duracion: "+this.duracion+"\n";
+		return (this.idPelicula+1)+" - "+this.nombre+" - "+this.genero+" - Duracion: "+this.duracion+"\n";
 	}
 	
 }
