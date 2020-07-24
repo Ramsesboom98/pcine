@@ -11,6 +11,5 @@ public interface BoletoDAO {
 	public boolean updateBoleto();
 	public List findAllBoletos();
 	public BoletoDTO findBoletosById();
-	
 
 }
