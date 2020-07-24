@@ -44,9 +44,26 @@ public class ControlFunciones implements FuncionDAO {
 		return funcionesPelicula;
 	}
 
-	public FuncionDTO findFuncionById() {
-		// TODO Auto-generated method stub
+	public FuncionDTO findFuncionById(int id) {
+		ArrayList<FuncionDTO> data = findAllFunciones();
+		for(FuncionDTO funcion: data) {
+			if(funcion.getIdFuncion()==id) {
+				return funcion;
+			}
+		}
 		return null;
+	}
+
+	public boolean cambioEstadoAsiento(int a, int b,int id) {
+		int aux[][] = findFuncionById(id).getSala().getAsientos();
+		if(aux[a][b]==1) {
+			return false;
+		}else {
+			aux[a][b]=1;
+			findFuncionById(id).getSala().setAsientos(aux);
+			return true;
+		}
+		
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import ec.edu.epn.git.control.ControlFunciones;
 import ec.edu.epn.git.control.ControlPeliculas;
@@ -30,9 +31,9 @@ public class PruebaViwe {
 	PeliculaDTO pelicula2 = new PeliculaDTO(1,"Mortal Kombat","Accion",2020,90);
 	PeliculaDTO pelicula3 = new PeliculaDTO(2,"Presencia Maligna","Terror",2020,100);
 	
-	SalaDTO sala1 = new SalaDTO(0, 8, 21);
-	SalaDTO sala2 = new SalaDTO(1, 8, 19);
-	SalaDTO sala3 = new SalaDTO(2, 7, 16);
+	SalaDTO sala1 = new SalaDTO(0, 8, 15);
+	SalaDTO sala2 = new SalaDTO(1, 8, 12);
+	SalaDTO sala3 = new SalaDTO(2, 7, 8);
 	
 	FuncionDTO funcion1 = new FuncionDTO(0, "2D", "12-08-2020", "13H00", pelicula1, sala1);
 	FuncionDTO funcion2 = new FuncionDTO(1, "3D", "12-08-2020", "16H00", pelicula1, sala2);
@@ -86,16 +87,59 @@ public class PruebaViwe {
 			System.out.println("Porfavor ingresar un codigo existente.");
 		}
 	}
-	System.out.println("Ingrese el codigo de el asiento deseado");
+	System.out.println("Asientos disponibles para la funcion.");
+	imprimirAsientos(cFuncion.findFuncionById(seleccionFun).getSala().getAsientos());
+	
+	Scanner entradaSelAsiento = new Scanner(System.in);
+	String seleccionAsiento="";
+	while(true) {
+		System.out.println("Ingrese el asiento que desea: ");
+		try {
+			seleccionAsiento = entradaSelAsiento.nextLine();
+			break;
+		} catch (NumberFormatException e) {
+			System.out.println("Porfavor ingresar un asiento existente.");
+		}
+	}
+	
+	String pp=mapeo(seleccionAsiento);
+	cFuncion.cambioEstadoAsiento(Integer.parseInt(pp.substring(0,1)), Integer.parseInt(pp.substring(1,pp.length()))-1,seleccionFun);
+	imprimirAsientos(cFuncion.findFuncionById(seleccionFun).getSala().getAsientos());
+	
+	Scanner entradaNombreCed = new Scanner(System.in);
+	String seleccionNombreCed="";
+	while(true) {
+		System.out.println("Porfavor ingresar su numero de cedula y nombre completo separados por un  espacio.");
+		try {
+			seleccionNombreCed = entradaNombreCed.nextLine();
+			break;
+		} catch (NumberFormatException e) {
+			System.out.println("Ingrese correctamente");
+		}
+	}
+	StringTokenizer token = new StringTokenizer(seleccionNombreCed, " ");
+	String cedulaCli = token.nextToken();
+	String nombre="";
+	for (int i = 0; i < token.countTokens(); i++) {
+		nombre+=token.nextToken()+" ";
+	}
 	
 	
-	
+	System.out.println("*************************************************************************************");
+	System.out.println("**************RESUMEN DE SU COMPRA***************************************************");
+	System.out.println("Señor/a:\t"+ nombre);
+	System.out.println("Ci     :\t"+cedulaCli);
+	System.out.println("Ha adquirido un boleto para la funcion:");
+	System.out.println(cFuncion.findFuncionById(seleccionFun));
+
+	System.out.println("**************GRACIAS POR SU COMPRA**************************************************");
 
 }
+	//-----------------------------------------------------------------------------
 	public static void imprimirPeliculas(ArrayList<PeliculaDTO> cPelicula ) {
 		System.out.println("\n**Listado peliculas disponibles**\n");
 		for (PeliculaDTO pel : cPelicula) {
-			System.out.println(pel);
+			System.out.println(pel);//dejaaa come verga 
 		}
 	}
 	
@@ -105,19 +149,46 @@ public class PruebaViwe {
 			System.out.println(fun);
 		}
 	}
-	
-	public static void imprimirAsientos(int[][] asientos) {
-		String aux[][] = new String[asientos.length+1][asientos[0].length+1];
-		String aux2="";
-		System.out.println();
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[i].length; j++) {
-				//if() {}
+
+	public static void imprimirAsientos(int [][] asientos ) {
+		int aux[][] = new int [asientos.length+1][asientos[0].length+1];
+		String Letra = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		
+		System.out.println("\n*Listado peliculas disponibles*\n");
+		
+		for (int i = 0; i <aux.length; i++) {
+			for (int j = 0; j <aux[i].length; j++) {
+				if (j == 0 && i > 0) {
+					System.out.print(Letra.substring(i-1, i));
+				}
+				else if (i == 0 && j > 0) {
+					System.out.print(j + "\t");
+				}
+				else if(i == 0 && j == 0) {
+					System.out.print("\t");
+				}
+				else if(asientos[i-1][j-1] == 0) {
+					System.out.print("\t-");
+				}
+				else if(asientos[i-1][j-1] == 1) {
+					System.out.print("\tx");
+				}
 			}
+			System.out.print("\n");
 		}
 	}
-
-
+	
+	public static String mapeo(String asiento) {
+		String Letra = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String result = "";
+		for (int i = 0; i < Letra.length(); i++) {
+			if (asiento.substring(0, 1).toUpperCase().equals(Letra.substring(i, i+1))) {
+				result = result + i;
+			}
+		}
+		result = result + asiento.subSequence(1, asiento.length());
+		return result;
+	}
 
 }
 
@@ -126,8 +197,8 @@ public class PruebaViwe {
  * Con un scan selecccionar la pelicula que queremos
  * Luego amostar las funciones de esa pelicula **
  * Seleccionar la funcion**
- * Seleccionar el asiento
- * Pagar
+ * Seleccionar el asiento**
+ * Pagar**
  * Facturar los boletos que querramos
  * Mostrar los boletos
  * */
