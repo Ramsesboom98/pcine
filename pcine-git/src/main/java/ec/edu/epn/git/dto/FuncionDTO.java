@@ -62,7 +62,7 @@ public class FuncionDTO {
 	@Override
 	public String toString() {
 		
-		return "\nFuncion: "+(idFuncion+1)+"\nPelicula: "+pelicula+sala+ "\nFecha y hora: "+fechaFunc+" "+hora;
+		return "\nFuncion: "+(idFuncion+1)+"\n"+pelicula+sala+ "\nFecha y hora: "+fechaFunc+" "+hora;
 	}
 	
 

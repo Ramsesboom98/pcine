@@ -4,15 +4,17 @@ import java.sql.Date;
 
 public class BoletoDTO {
 	
+	private int idBoleto;
 	private double precio;
-	private Date FechaEmision;
+	private String fechaEmision;
 	private FuncionDTO funcion;
 	private String asiento;
 	
-	public BoletoDTO(double precio, Date fechaEmision, FuncionDTO funcion, String asiento) {
+	public BoletoDTO(int idBoleto ,double precio, String fechaEmision, FuncionDTO funcion, String asiento) {
 		super();
+		this.idBoleto=idBoleto;
 		this.precio = precio;
-		FechaEmision = fechaEmision;
+		this.fechaEmision = fechaEmision;
 		this.funcion = funcion;
 		this.asiento = asiento;
 	}
@@ -22,11 +24,11 @@ public class BoletoDTO {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	public Date getFechaEmision() {
-		return FechaEmision;
+	public String getFechaEmision() {
+		return fechaEmision;
 	}
-	public void setFechaEmision(Date fechaEmision) {
-		FechaEmision = fechaEmision;
+	public void setFechaEmision(String fechaEmision) {
+		fechaEmision = fechaEmision;
 	}
 	public FuncionDTO getFuncion() {
 		return funcion;
@@ -41,7 +43,17 @@ public class BoletoDTO {
 		this.asiento = asiento;
 	}
 	
-	
+	public int getIdBoleto() {
+		return idBoleto;
+	}
+	public void setIdBoleto(int idBoleto) {
+		this.idBoleto = idBoleto;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Boleto: "+idBoleto+"\nPrecio: "+precio+"\nFecha de Emision: "+fechaEmision+funcion+"\nAsiento: "+asiento.toUpperCase();
+	}
 
 }
 

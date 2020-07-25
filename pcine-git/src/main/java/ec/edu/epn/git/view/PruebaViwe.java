@@ -8,10 +8,13 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import ec.edu.epn.git.control.ControlBoletos;
 import ec.edu.epn.git.control.ControlFunciones;
 import ec.edu.epn.git.control.ControlPeliculas;
+import ec.edu.epn.git.dao.BoletoDAO;
 import ec.edu.epn.git.dao.FuncionDAO;
 import ec.edu.epn.git.dao.PeliculaDAO;
+import ec.edu.epn.git.dto.BoletoDTO;
 import ec.edu.epn.git.dto.FuncionDTO;
 import ec.edu.epn.git.dto.PeliculaDTO;
 import ec.edu.epn.git.dto.SalaDTO;
@@ -21,9 +24,9 @@ public class PruebaViwe {
 	public static void main(String[] args) throws ParseException {
 	// TODO Auto-generated method stub
 	PeliculaDAO cPelicula = new ControlPeliculas();
-	//Creamos un control de funciones en el cual agregaremos nuestras funciones
-	
+	//Creamos un control de funciones en el cual agregaremos nuestras funciones	
 	FuncionDAO cFuncion = new ControlFunciones();
+	BoletoDAO cBoleto = new ControlBoletos();
 	
 	
 	/*Creacion de listado de peliculas*/
@@ -120,17 +123,21 @@ public class PruebaViwe {
 	StringTokenizer token = new StringTokenizer(seleccionNombreCed, " ");
 	String cedulaCli = token.nextToken();
 	String nombre="";
-	for (int i = 0; i < token.countTokens(); i++) {
-		nombre+=token.nextToken()+" ";
+	while (token.hasMoreTokens()){
+		nombre=nombre+token.nextToken()+" ";
 	}
+	Date fechaAct = new Date();
+	cBoleto.addBoleto(new BoletoDTO(0, 5.00 , fechaAct.toString(), cFuncion.findFuncionById(seleccionFun), seleccionAsiento));
+	
+	
 	
 	
 	System.out.println("*************************************************************************************");
 	System.out.println("**************RESUMEN DE SU COMPRA***************************************************");
 	System.out.println("Señor/a:\t"+ nombre);
-	System.out.println("Ci     :\t"+cedulaCli);
-	System.out.println("Ha adquirido un boleto para la funcion:");
-	System.out.println(cFuncion.findFuncionById(seleccionFun));
+	System.out.println("Ci:     \t"+cedulaCli);
+	System.out.println("Ha adquirido un boleto:");
+	System.out.println(cBoleto.findBoletosById(0));
 
 	System.out.println("**************GRACIAS POR SU COMPRA**************************************************");
 

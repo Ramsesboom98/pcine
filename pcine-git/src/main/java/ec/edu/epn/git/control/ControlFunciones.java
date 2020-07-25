@@ -18,13 +18,16 @@ public class ControlFunciones implements FuncionDAO {
 		return this.funciones.add(funcion);
 	}
 
-	public boolean deleteFuncion() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteFuncion(int id) {
+		ArrayList<FuncionDTO> data = findAllFunciones();
+		return data.remove(findFuncionById(id));
 	}
 
-	public boolean updateFuncion() {
-		// TODO Auto-generated method stub
+	public boolean updateFuncion(int id,FuncionDTO funcion ) {
+		ArrayList<FuncionDTO> data = findAllFunciones();
+		if(data.set(id, funcion)!=null) {
+			return true;
+		}		
 		return false;
 	}
 
