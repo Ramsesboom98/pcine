@@ -11,7 +11,6 @@ import ec.edu.epn.git.dto.SalaDTO;
 
 public class ControlFuncionesTest {
 	private ControlFunciones control;
-	
 	@Before
 	public void before() {
 		this.control = new ControlFunciones();
@@ -40,23 +39,20 @@ public class ControlFuncionesTest {
 	public void testFindAllFunciones() {
 		assertEquals(2, control.findAllFunciones().size());
 	}
-
 	@Test
 	public void testFindAllFuncionesByIdPelicula() {
 		assertEquals(2, control.findAllFuncionesByIdPelicula(0).size());
 	}
-
 	@Test
 	public void testFindFuncionById() {
 		FuncionDTO expected = new FuncionDTO(2, "2D", "12-08-2020", "11H00",  new PeliculaDTO(0,"Sonic","Comedia",2020,120), new SalaDTO(0, 8, 15));
 		control.addFuncion(expected);
 		assertEquals(expected,control.findFuncionById(2));
 	}
-
 	@Test
-	public void testCambioEstadoAsiento() {
-		// cambioEstadoAsiento(int a, int b,int id) 		
+	public void testCambioEstadoAsiento() {		
 		assertTrue(control.cambioEstadoAsiento(1, 1, 0));
 	}
 
 }
+
