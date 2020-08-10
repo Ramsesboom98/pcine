@@ -144,9 +144,9 @@ public class PruebaViwe {
 }
 	//-----------------------------------------------------------------------------
 	public static void imprimirPeliculas(ArrayList<PeliculaDTO> cPelicula ) {
-		System.out.println("\n**Listado peliculas disponibles**\n");
+		System.out.println("\n**Listado peliculas **\n");
 		for (PeliculaDTO pel : cPelicula) {
-			System.out.println(pel);//dejaaa come verga 
+			System.out.println(pel);
 		}
 	}
 	

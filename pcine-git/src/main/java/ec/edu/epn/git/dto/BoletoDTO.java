@@ -52,7 +52,7 @@ public class BoletoDTO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Boleto: "+idBoleto+"\nPrecio: "+precio+"\nFecha de Emision: "+fechaEmision+funcion+"\nAsiento: "+asiento.toUpperCase();
+		return "Boleto: "+(idBoleto+1)+"\nPrecio: "+precio+"\nFecha de Emision: "+fechaEmision+funcion+"\nAsiento: "+asiento.toUpperCase();
 	}
 
 }

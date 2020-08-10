@@ -38,7 +38,8 @@ public class ControlBoletosTest {
 	public void testUpdateBoleto() {
 		BoletoDTO update = new BoletoDTO(1, 5.80 , "fechaEmision", 
 				new FuncionDTO(0, "2D", "12-08-2020", "13H00",  new PeliculaDTO(0,"Sonic","Comedia",2020,120), new SalaDTO(0, 8, 15)), "B2");
-		assertTrue(control.updateBoleto(1, update));
+		//assertTrue(control.updateBoleto(1, update));
+		assertTrue(false);
 	}
 
 	@Test

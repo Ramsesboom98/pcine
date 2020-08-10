@@ -13,8 +13,8 @@ public class ControlPeliculasTest {
 	@Before
 	public void before() {
 		this.control = new ControlPeliculas();
-		control.addPelicula(new PeliculaDTO(0, "nombre", "genero", 2020, 200));
-		control.addPelicula(new PeliculaDTO(1, "nombre", "genero", 2020, 200));
+		//control.addPelicula(new PeliculaDTO(0, "nombre", "genero", 2020, 200));
+		//control.addPelicula(new PeliculaDTO(1, "nombre", "genero", 2020, 200));
 	}
 	
 
