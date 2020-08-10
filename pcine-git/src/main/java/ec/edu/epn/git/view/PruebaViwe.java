@@ -136,7 +136,7 @@ public class PruebaViwe {
 	System.out.println("**************RESUMEN DE SU COMPRA***************************************************");
 	System.out.println("Señor/a:\t"+ nombre);
 	System.out.println("Ci:     \t"+cedulaCli);
-	System.out.println("Ha adquirido un boleto:");
+	System.out.println("Ha adquirido un boleto :");
 	System.out.println(cBoleto.findBoletosById(0));
 
 	System.out.println("**************GRACIAS POR SU COMPRA**************************************************");
